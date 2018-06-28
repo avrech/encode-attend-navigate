@@ -3,7 +3,7 @@
 ## Overview
 
 Tensorflow implementation of <br/> 
-[Learning Heuristics for the TSP by Policy Gradient, Michel Deudon, Pierre Cournut, Alexandre Lacoste, Yossiri Adulyasak and Louis-Martin Rousseau](https://link.springer.com/chapter/10.1007%2F978-3-319-93031-2_12)
+[Learning Heuristics for the TSP by Policy Gradient, Deudon M., Cournut P., Lacoste A., Adulyasak Y. and Rousseau L.M.](https://link.springer.com/chapter/10.1007%2F978-3-319-93031-2_12)
 
 ## Requirements
 
