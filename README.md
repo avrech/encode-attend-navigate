@@ -80,7 +80,7 @@ We evaluate on TSP100 our model pre-trained on TSP50 and the results show that t
 - [Element AI](https://www.elementai.com/) for hosting weekly meetings <br/>
 - [Compute Canada](https://www.computecanada.ca/), [Calcul Québec](http://www.calculquebec.ca/) & [Télécom Paris-Tech](https://www.telecom-paristech.org/) for computational resources <br/>
 
-Special thanks (chronological order): <br/>
+Special thanks: <br/>
 - [Pr. Louis-Martin Rousseau](http://hanalog.polymtl.ca/person/louis-martin-rousseau/) (Polytechnique Montreal), [Pr. Yossiri Adulyasak](http://www.yossiri.info/) (HEC Montreal) and [Dr. Alexandre Lacoste](https://twitter.com/recursix) (Element AI) who supervised this work and with who I had useful discussions and pleasant times. <br/>
 - [Pierre Cournut](https://www.linkedin.com/in/pierre-cournut) (Ecole Polytechnique, KTH) with who I worked on the project. <br/>
 - [Dr. Khalid Laaziri](https://www.gerad.ca/fr/people/khalid-laaziri), [Mehdi Taobane](http://cerc-datascience.polymtl.ca/person/mehdi-taobane/), Diane Bernier as well as MSc and PhD students from the "Pavillon André-Aisenstadt" for their kindness and support. <br/>
