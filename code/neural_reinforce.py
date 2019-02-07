@@ -322,15 +322,15 @@ if TEST:
 
         # save results to pickle:
         save_path = "save/" + dir_
-        res_pkl_fname = save_path+'nr-test-results-{}nodes-from-{date:%Y-%m-%d_%H-%M-%S}.pkl'.format(config.max_length, date=datetime.datetime.now() )
+        res_pkl_fname = os.path.join(save_path,'nr-test-results-{}nodes-from-{date:%Y-%m-%d_%H-%M-%S}.pkl'.format(config.max_length, date=datetime.datetime.now() ))
         with open(res_pkl_fname, 'wb') as f:
-            pickle.dump((test_data,
-                         predictions_length,
-                         test_nr_tours,
-                         test_nr_time,
-                         predictions_length_w2opt,
-                         test_nr2opt_tours,
-                         test_nr2opt_time),
+            pickle.dump({'test_data': test_data,
+                         'predictions_length': predictions_length,
+                         'test_nr_tours': test_nr_tours,
+                         'test_nr_time': test_nr_time,
+                         'predictions_length_w2opt': predictions_length_w2opt,
+                         'test_nr2opt_tours': test_nr2opt_tours,
+                         'test_nr2opt_time': test_nr2opt_time},
                         f)
         print('Test results saved to ' + res_pkl_fname)
         predictions_length = np.asarray(predictions_length)  # average tour length
