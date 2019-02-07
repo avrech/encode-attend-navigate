@@ -111,19 +111,21 @@ class DataGenerator(object):
         plt.xlabel('City i')
         plt.show()
 
-def coord2tspfile(data, dirname, tsp_comment='random'):
+def coord2tspfile(record, dirname, tsp_comment='random'):
     '''
     Generate for data standard TSP folder,
     containing .tsp files of each instance
-    :param list data: a list of cities. each city is a list of 2d points.
+    :param dict record: dict of cities and nr/nr2opt results
     :param str dirname: path to save the tsp files.
     :param str tsp_comment: description to be written in the tsp files
     :return: None
     '''
+    norm = 1000000 # normalize for evaluation by concorde
     if not os.path.exists(dirname):
         os.makedirs(dirname)
     city_id = 0
-    for city in tqdm(data, 'Generating tsp files...'):
+    nr_results = {}
+    for city in tqdm(record['test_data'], 'Generating tsp files...'):
         tsp_fname = 'city{}-{}-{}nodes.tsp'.format(city_id, tsp_comment, len(city[0]))
         with open(os.path.join(dirname, tsp_fname), 'w') as f:
             f.write('NAME: '+tsp_fname[:-4]+'\n')
@@ -133,12 +135,21 @@ def coord2tspfile(data, dirname, tsp_comment='random'):
             f.write('EDGE_WEIGHT_TYPE: EUC_2D\n')
             f.write('NODE_COORD_SECTION\n')
             for n_id, node in enumerate(city[0]):
-                f.write('{:d} {} {}\n'.format(n_id+1, node[0], node[1]))
+                f.write('{:d} {} {}\n'.format(n_id+1, node[0]*norm, node[1]*norm))
             f.write('EOF')
+        nr_results[tsp_fname[:-4]] = {
+            'nr_len': record['predictions_length'][city_id],
+            'nr_time': record['test_nr_time'][city_id],
+            'nr2opt_len': record['predictions_length_w2opt'][city_id],
+            'nr2opt_time': record['test_nr2opt_time'][city_id]
+        }
         city_id += 1
+
+    with open('nr_results.pkl', 'wb') as f:
+        pickle.dump(nr_results, f)
 
 if __name__ == '__main__':
     with open('save/2D_TSP50_b256_e128_n512_s3_h16_q360_u256_c256_lr0.001_d5000_0.96_T1.0_steps20000_i7.0/nr-test-results-100nodes-from-2019-02-07_09-21-49.pkl', 'rb') as f:
         record = pickle.load(f)
-    coord2tspfile(record['test_data'], 'nr_test_tsp', 'random')
+    coord2tspfile(record, 'nr_test_tsp_norm1e6', 'random_norm-1e6')
     print('Finished')
