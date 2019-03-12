@@ -145,11 +145,11 @@ def coord2tspfile(record, dirname, tsp_comment='random'):
         }
         city_id += 1
 
-    with open('nr_results.pkl', 'wb') as f:
+    with open('nr_results100.pkl', 'wb') as f:
         pickle.dump(nr_results, f)
 
 if __name__ == '__main__':
     with open('save/2D_TSP50_b256_e128_n512_s3_h16_q360_u256_c256_lr0.001_d5000_0.96_T1.0_steps20000_i7.0/nr-test-results-100nodes-from-2019-02-07_09-21-49.pkl', 'rb') as f:
         record = pickle.load(f)
-    coord2tspfile(record, 'nr_test_tsp_norm1e6', 'random_norm-1e6')
+    coord2tspfile(record, 'nr_test_tsp100_norm1e6', 'random100_norm-1e6')
     print('Finished')

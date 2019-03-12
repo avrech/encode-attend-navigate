@@ -275,7 +275,7 @@ if TRAIN:
 if TEST:
     config.is_training = False
     config.batch_size = 10 ##### #####
-    config.max_length = 100 ##### ##### 50
+    config.max_length = 200 ##### ##### 50
     config.temperature = 1.2 ##### #####
 
     tf.reset_default_graph()
@@ -313,7 +313,7 @@ if TEST:
             # dataset.visualize_sampling(tour)
 
             # refine tsp solution by 2opt:
-            opt_tour, opt_length = dataset.loop2opt(input_batch[0][best_permutation])
+            opt_tour, opt_length = dataset.loop2opt(input_batch[0][best_permutation], max_iter=10)
             test_nr2opt_time.append(time.time() - t_start)
             test_nr2opt_tours.append(opt_tour)
             predictions_length_w2opt.append(opt_length)
